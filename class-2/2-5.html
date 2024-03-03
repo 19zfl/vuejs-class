@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="watch-example">
+        <p>请输入一段字符带英文？：<input type="text" v-model="word"></p>
+        <p>{{ result }}</p>
+    </div>
+</body>
+<script>
+    const App = Vue.createApp({
+        data() {
+            return {
+                word:'',
+                result:'this is a good word'
+            }
+        },
+        watch: {
+            word(newWord, oldWord) {
+                if (newWord.indexOf('?') > -1) {
+                    this.getResult()
+                }
+            }
+        },
+        methods: {
+            getResult() {
+                this.result = "please wait a minutes"
+                axios
+                    .get('https://yesno.wtf/api')
+                    .then(response => {
+                        this.result = response.data.result
+                    })
+                    .catch(error => {
+                        this.result = "error" + error
+                    })
+            }
+        }
+    }).mount('#watch-example')
+</script>
+</html>

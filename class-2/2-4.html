@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="getApp">
+        时间time1: {{myTime()}}-{{myStop()}}<br>
+        time2: {{myTime()}}-{{myStop()}}<br>
+        time3: {{yourTime()}}-{{myStop()}}<br>
+        time4: {{yourTime()}}
+    </div>
+</body>
+<script>
+    const App = {
+        methods:{
+            myTime() {
+                return Date.now()
+            },
+            myStop() {
+                alert("stop one")
+            }
+        },
+        computed: {
+            yourTime() {
+                return Date.now()
+            }
+        }
+    }
+    Vue.createApp(App).mount('#getApp')
+</script>
+</html>

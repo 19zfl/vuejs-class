@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="vueapp">
+        商品1单价为：<input type="text" v-model="price1">
+        商品1数量为:<input type="text" v-model="num1">
+        计算的总价为：{{ total }}
+    </div>
+</body>
+<script>
+    const App = {
+        data() {
+            return {
+                price1:1,
+                num1:1,
+            }
+        },
+        // computed: {
+        //     total(){
+        //         return this.price1 * this.num1
+        //     }
+        // }
+        computed: {
+            total:{
+                get() {
+                    return this.price1 * this.num1
+                },
+                set(value) {
+                    console.log(value)
+                }
+            }
+        }
+    }
+    Vue.createApp(App).mount('#vueapp')
+</script>
+</html>
