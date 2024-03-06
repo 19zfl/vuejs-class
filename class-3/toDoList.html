@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="application">
+        新建任务：<input v-model="task" type="text" placeholder="请输入待办事项...">
+        <button v-on:click="insertTask">添加</button>
+        <ol>
+            <li v-for="items in list">
+                <span>{{items}}</span>
+                <button :onclick="delTask">删除</button>
+            </li>
+        </ol>
+    </div>
+</body>
+<script>
+    const App = {
+        data() {
+            return {
+                task:'',
+                list:[]
+            }
+        },
+        methods:{
+            insertTask(){
+                if(this.task.length == 0) {
+                    alert('请输入内容：');
+                    return
+                }
+                this.list.push(this.task)
+            },
+            delTask(index) {
+                this.list.splice(index, 1)
+            }
+        }
+    }
+    Vue.createApp(App).mount('#application')
+</script>
+</html>

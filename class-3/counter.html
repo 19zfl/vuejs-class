@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="application">
+        <h1>{{counter}}</h1>
+        <button v-on:click="clickBtn">点击+1</button>
+        <button v-on:click="recovery">恢复</button>
+    </div>
+</body>
+<script>
+    const App = {
+        data() {
+            return {
+                counter:0
+            }
+        },
+        methods: {
+            clickBtn() {
+                this.counter=this.counter + 1
+            },
+            recovery() {
+                this.counter = 0
+            }
+        }
+    }
+    Vue.createApp(App).mount('#application')
+</script>
+</html>
